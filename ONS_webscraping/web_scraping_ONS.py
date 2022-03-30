@@ -119,5 +119,5 @@ for model in arq_ONS:
       # file exists
    else: 
       print("=======================================================")
-      print("OCORREU UM ERRO NO DOWLOAD DO MODELO: " +model+" DO ONS")
+      print("OCORREU UM ERRO NO DOWNLOAD DO MODELO: " +model+" DO ONS")
       print("=======================================================")
