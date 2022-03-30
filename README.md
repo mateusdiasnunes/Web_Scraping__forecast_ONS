@@ -10,6 +10,8 @@ Script que realiza o download dos dados diários do ONS em arquivos zipados no f
 
 A técnica utilizada aqui foi a WEB Scraping, pois a ONS não disponibiliza esses dados via ftp ou API.
 
+O objetivo é automatizar o download para quem não tem acesso aos dados de previsão de 14 dias do IFS e assim aplicar a metodologia de remoção de viés do ONS.
+
 ### Os dados são dos modelos
 
 + **IFS** - Integrated Forecast System | ECMWF
