@@ -22,7 +22,7 @@ A técnica utilizada aqui foi a WEB Scraping, pois o ONS não disponibiliza esse
 
 Não esqueça de instalar as bibliotecas necessárias.
 
-Não esqueça de trocar o PATH.
+Não esqueça de trocar o PATH e inserir seu login e senha do cadastro no ONS.
 
 PS1: O objetivo deste código não é violar o servidor da ONS e sim automatizar o processo download para otimizar o as rotinas operacionais diárias.
 
