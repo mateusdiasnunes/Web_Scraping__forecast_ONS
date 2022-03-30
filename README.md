@@ -18,6 +18,10 @@ A técnica utilizada aqui foi a WEB Scraping, pois a ONS não disponibiliza esse
                                                                                                                     
 A técnica utilizada aqui foi a WEB Scraping, pois o ONS não disponibiliza esses dados via ftp ou API.
 
+Não esqueça de instalar as bibliotecas necessárias.
+
+Não esqueça de trocar o PATH.
+
 PS1: O objetivo deste código não é violar o servidor da ONS e sim automatizar o processo download para otimizar o as rotinas operacionais diárias.
 
 PS2: Crie rotinas combinando Web Scraping, Shell script e crontab para verificar quando os produtos de precipitação da ONS estiverem disponíveis assim que disponibilizados no site. 
