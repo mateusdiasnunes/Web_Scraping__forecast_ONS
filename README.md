@@ -26,7 +26,7 @@ Não esqueça de trocar o PATH.
 
 PS1: O objetivo deste código não é violar o servidor da ONS e sim automatizar o processo download para otimizar o as rotinas operacionais diárias.
 
-PS2: Crie rotinas combinando Web Scraping, Shell script e crontab para verificar quando os produtos de precipitação da ONS estiverem disponíveis assim que disponibilizados no site. 
+PS2: Crie rotinas combinando Web Scraping, Shell script e crontab para verificar quando os produtos de precipitação da ONS estiverem disponíveis assim que disponibilizados no site, depois ainda criando algum código que faça uma "varredura" verificando a existência dos arquivos (após o download), renomeando-os pela data atual e assim plotando seus produtos.
 
 PS3: Otimize esse código o quanto quiser. Não programo em python, não gosto de python. 
 
