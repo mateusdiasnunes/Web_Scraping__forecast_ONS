@@ -1,5 +1,7 @@
+#!/usr/bin/python
+
 #====================================================================================================================#
-#                         Script para baixar dados diários de previsão de precipitação do ONS                        #
+#                         Script para baixar dados diários dos acumulados de precipitação do ONS                     #
 #                                                                                                                    #
 #                            Dados de previsão já com a metodologia de remoção de BIAS (viés)                        #
 #                                                                                                                    #
@@ -9,12 +11,18 @@
 #                                                                                                                    #
 #                                   Mateus Dias Nunes @WorldSE - Março de 2022                                       # 
 #                                                                                                                    #
+#                                             mateus.dias@worldse.com.br                                             #
 #====================================================================================================================#
 from selenium import webdriver
+from selenium.webdriver.firefox.options import Options
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
 from webdriver_manager.firefox import GeckoDriverManager
 from time import sleep
 from pathlib import Path
-import os
+import http.cookiejar as cookielib
+
 
 #====================================================================================================================#
 
@@ -22,30 +30,35 @@ print('--------------------------------------------------------------')
 print('             Dados ONS Download - Script started              ')
 print('--------------------------------------------------------------')
 
-USER_path='/home/username/'         #altere para o seu caminho desejado
+USER_path='/home/mateusdiasnunes/Drive/meteorologia/worldSE/'
 
 navegador=webdriver.FirefoxProfile()
+
 navegador.set_preference("browser.download.folderList",2)
 navegador.set_preference("browser.download.manager.showWhenStarting",False)
 navegador.set_preference("browser.download.dir", USER_path)
 navegador.set_preference("browser.helperApps.neverAsk.saveToDisk","application/octet-stream")
 navegador=webdriver.Firefox(firefox_profile=navegador,executable_path=GeckoDriverManager().install()) #
 
+wait = WebDriverWait(navegador, 20)
+
 #link acesso ONS
-link = 'https://bit.ly/3uFFmtl' #utilizamos o bitly.com para encurtar o link da página de login no sintegre
-navegador.get(url=link)navegador.get(url=link)
+#link = 'https://pops.ons.org.br/ons.pop.federation/?wa=wsignin1.0&wtrealm=https%3a%2f%2fsintegre.ons.org.br%2f_trust%2fdefault.aspx&wctx=https%3a%2f%2fsintegre.ons.org.br%2fsites%2f9%2f38%2f_layouts%2f15%2fAuthenticate.aspx%3fSource%3d%252Fsites%252F9%252F38%252Fpaginas%252Fservicos%252Fhistorico%252Dde%252Dprodutos%252Easpx&wreply=https%3a%2f%2fsintegre.ons.org.br%2f_trust%2fdefault.aspx'
+link = 'https://bit.ly/3uFFmtl' #utilizamos o bitly para encurtar o link da página para login no sintegre
+navegador.get(url=link)
 sleep(4)
+
 
 print('---------------------------------------------------------------------------------------')
 print('                    Preencher o primeiro campo (username)                              ')
-print('                          e clicar no botão AVANÇAR                                    ')
+print('	                        e clicar no botão AVANÇAR                                    ')
 print('---------------------------------------------------------------------------------------')
 
 #---------------------------------------------------------------------------------------
-username = 'seuemail@empresa.com.br'  #seu e-mail cadastrado no ONS entre aspas simples
-password = 'seu_password'             #senha do e-mail cadastrado
+username = 'mateus.dias@worldse.com.br'  #dados do usuário
+password = 'Mateus2102'
 
-campo_username = navegador.find_element_by_css_selector('#username')  #aqui o código irá preencher campo do #username
+campo_username = navegador.find_element_by_css_selector('#username')  #preencher campo do #username
 sleep(2)
 campo_username.send_keys(username)
 sleep(2)
@@ -76,9 +89,9 @@ print('')
 print('---------------------------------------------------------------------------------------')
 print('                           Clicar no botão  CONCORDO (cookies)                         ')
 print('---------------------------------------------------------------------------------------')
-
+          
 cookie = '/html/body/form/div[12]/div/div[5]/button'
-bottom_cookie = navegador.find_element_by_xpath(cookie).click()
+bottom_cookie = navegador.find_element(By.XPATH,cookie).click()
 sleep(2)
 
 navegador.refresh() #refresh na página para garantir que os produtos sejam carregados integralmente
@@ -93,12 +106,12 @@ print('-------------------------------------------------------------------------
 id_model = ['//*[@id="linkarquivo-7642"]','//*[@id="linkarquivo-6419"]','//*[@id="linkarquivo-6416"]']
 
 for id_xpath in id_model:
-   print("===================================================")
-   bottom_downlod = navegador.find_element_by_xpath(id_xpath)
-   sleep(2)
-   bottom_downlod.click()
-   sleep(2)
-   print("===================================================")
+	print("===================================================")
+	bottom_downlod = navegador.find_element(By.XPATH,id_xpath)
+	sleep(2)
+	bottom_downlod.click()
+	sleep(2)
+	print("===================================================")
 
 
 print('---------------------------------------------------------------------------------------')
@@ -119,5 +132,5 @@ for model in arq_ONS:
       # file exists
    else: 
       print("=======================================================")
-      print("OCORREU UM ERRO NO DOWNLOAD DO MODELO: " +model+" DO ONS")
+      print("OCORREU UM ERRO NO DOWLOAD DO MODELO: " +model+" DO ONS")
       print("=======================================================")
