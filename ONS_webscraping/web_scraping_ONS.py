@@ -55,8 +55,8 @@ print('	                        e clicar no botão AVANÇAR                     
 print('---------------------------------------------------------------------------------------')
 
 #---------------------------------------------------------------------------------------
-username = 'mateus.dias@worldse.com.br'  #dados do usuário
-password = 'Mateus2102'
+username = 'joaomaria@empresa.com.br'  #dados do usuário
+password = '123456789'
 
 campo_username = navegador.find_element_by_css_selector('#username')  #preencher campo do #username
 sleep(2)
